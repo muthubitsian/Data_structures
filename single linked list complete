@@ -1,0 +1,197 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node{
+    
+    int data;
+    struct node *next;
+};
+
+struct node *head;
+void insert_arr(int arr[],int size)
+{
+    if(head==NULL)
+    {
+        head=(struct node*)malloc(sizeof(struct node*));
+        head->data=arr[0];
+        head->next=NULL;
+    }
+    
+        struct node *temp1,*temp;
+        temp=head;
+        
+        for(int i=1;i<size;i++)
+        {
+            temp1=(struct node*)malloc(sizeof(struct node*));
+            temp1->data=arr[i];
+            temp1->next=NULL;
+            temp->next=temp1;
+            temp=temp1;
+          //  printf("%d",temp1->data);
+        }
+        
+    
+    
+}
+
+void display()
+{
+    
+    if(head==NULL)
+    printf("no element is present");
+    
+    else{
+        struct node *temp;
+        temp=head;
+        while(temp!=NULL)
+        {
+            printf("%d",temp->data);
+            temp=temp->next;
+        }
+    }
+    
+}
+
+void insert_element(int a)
+{
+    struct node *temp,*temp1;
+    temp1=(struct node*)malloc(sizeof(struct node*));
+    temp1->data=a;
+    temp1->next=NULL;
+    while(temp->next!=NULL)
+    temp=temp->next;
+    
+    
+    temp->next=temp1;
+}
+
+void delete_ele(int pos)
+{
+    int k=0;
+    struct node *temp1,*temp;
+    temp1=NULL;
+    temp=head;
+    while(k!=pos)
+    {
+        temp1=temp;
+        temp=temp->next;
+        k=k+1;
+    }
+    temp1->next=temp->next;
+    temp->next=NULL;
+    
+    
+}
+
+struct node * r_display(struct node *p)
+{
+    if(p==NULL)
+    return NULL;
+    
+    else{
+        printf("%d",p->data);
+        r_display(p->next);
+    }
+
+}
+
+struct node* reverse_display(struct node *p)
+{
+    if(p==NULL)
+    return NULL;
+    
+    else{
+        struct node *temp;
+        temp=p;
+        reverse_display(p->next);
+        printf("%d",temp->data);
+    }
+    
+    
+    
+}
+
+struct node* reverse_linkedlist(struct node *p,struct node *p1)
+{
+    if(p==NULL)
+    {
+        head=p1;
+        return p1;
+    }
+    else{
+        struct node *temp;
+       // temp=p;
+        temp=reverse_linkedlist(p->next,p);
+        temp->next=p1;
+        return p1;
+        
+    }
+    
+    
+    
+}
+
+struct node* reverse_linkedlist_1(struct node *p1,struct node *p2,struct node *p3)
+{
+    do
+    {
+        p2=p3;
+        p3=p3->next;
+        p2->next=p1;
+        p1=p2;
+    }while(p3!=NULL);
+    head=p2;
+}
+
+void remove_duplicate()
+{
+    struct node *p=head;
+    struct node *q,*temp;
+    while(p->next->next!=NULL)
+    {
+        q=p->next;
+        temp=q;
+        while(q!=NULL)
+        {
+          if(p->data==q->data)
+          {
+              temp->next=q->next;
+              q->next=NULL;
+              q=temp;
+          }
+          else{
+              temp=q;
+              q=q->next;
+          }
+        }
+    
+    p=p->next;
+    }
+}
+
+int main()
+{
+    head=NULL;
+    int size;
+    int arr[7]={9,2,8,4,5,8,7};
+    size=sizeof(arr)/sizeof(arr[0]);
+    //printf("%d",size);
+    insert_arr(arr,size);
+    insert_element(8);
+    display();
+    delete_ele(3);
+    printf("\n");
+    display();
+    printf("\n");
+    r_display(head);
+    printf("\n");
+    reverse_display(head);
+    reverse_linkedlist(head,NULL);
+    reverse_linkedlist_1(NULL,NULL,head);
+    printf("\n");
+    display();
+    remove_duplicate(head);
+    printf("\n");
+    display();
+    return 0;
+}

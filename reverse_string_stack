@@ -1,0 +1,70 @@
+#include<stdio.h>
+#include<stdio.h>
+
+#define size 10
+
+struct stack{
+    char arr[size];
+    int top;
+};
+struct stack st;
+
+int isempty(){
+    if(st.top==-1)
+    return 1;
+    else
+    return 0;
+}
+
+int isfull(){
+    
+    if(st.top==size)
+    return 1;
+    else
+    return 0;
+}
+
+
+void push(char x){
+ st.top++;
+ st.arr[st.top]=x;
+}
+
+void peek(){
+    if(!isempty())
+    printf("%c",st.arr[st.top]);
+}
+
+void pop()
+{
+    if(!isempty())
+    {
+        printf("%c",st.arr[st.top]);
+        st.top--;
+    }
+    
+    else{
+        printf("empty");
+    }
+    
+}
+
+
+
+int main()
+{
+  st.top=-1;
+  char temp;
+  int i;
+  for(i=0;i<size;i++)
+  {
+      scanf("%c",&temp);
+      push(temp);
+  }
+    
+   while(!isempty())
+   {
+       pop();
+   }
+    return 0;
+}

@@ -1,0 +1,59 @@
+#include<stdio.h>
+
+struct stack{
+    
+    char str[20];
+    int top;
+};
+struct stack st;
+
+void push(char ele)
+{
+    if(st.top!=20)
+    {
+        st.top++;
+        st.str[st.top]=ele;
+    }
+    else{
+        printf("full");
+    }
+}
+
+void pop()
+{
+    st.top--;
+}
+
+void check_balance(char *str)
+{
+    int i=0; 
+    while(str[i]!='\0')
+    {
+        if(str[i]=='(')
+        push(str[i]);
+        else if(str[i]==')')
+        pop();
+     //printf("\nbalanced %d",st.top);
+        i++;
+        
+    }
+    //printf("\nbalanced %d",st.top);
+    if(st.top==-1)
+    printf("balanced");
+    else
+    printf("not balanced");
+}
+
+int main()
+{
+    int i=0;
+    st.top=-1;
+    char string_[10]="(((2+3))";
+    //while(str[i]!='\0')
+    //{
+      //  push(string_[i]);
+        //i++;
+//    }
+    check_balance(string_);
+    return 0;
+}

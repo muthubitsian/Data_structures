@@ -1,0 +1,51 @@
+#include<stdio.h>
+
+#define size 10
+
+struct queue{
+    int rear;
+    int front;
+    int arr[size];
+};
+struct queue q1;
+
+void enque(int ele)
+{
+   q1.arr[q1.rear++]=ele;
+}
+
+void deque()
+{
+    printf("%d",q1.arr[q1.front]);
+    for(int i=0;i<q1.rear;i++)
+    {
+        q1.arr[i]=q1.arr[i+1];
+    }
+    q1.rear--;
+}
+
+void display()
+{
+    printf("\n");
+    for(int i=q1.front;i<=q1.rear;i++)
+    {
+        printf("%d",q1.arr[i]);
+    }
+    
+}
+
+int main()
+{
+   q1.rear=0;
+   q1.front=0;
+   
+   enque(4);
+   enque(7);
+   enque(5);
+   enque(6);
+   display();
+   deque();
+   deque();
+  display();
+    return 0;
+}
